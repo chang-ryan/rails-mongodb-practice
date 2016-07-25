@@ -27,4 +27,15 @@ class Place
       end
     end
   end
+
+  def self.find_by_short_name(s)
+    result = collection.find("address_components.short_name": s)
+    result.nil? ? nil : result
+  end
+
+  def self.to_places(view)
+    places = []
+    view.each { |doc| places << Place.new(doc) }
+    places
+  end
 end
