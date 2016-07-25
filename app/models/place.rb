@@ -38,4 +38,21 @@ class Place
     view.each { |doc| places << Place.new(doc) }
     places
   end
+
+  def self.find(id)
+    id = BSON::ObjectId.from_string(id) unless id === BSON::ObjectId
+    result = collection.find(:_id => id).first
+    result.nil? ? nil : Place.new(result)
+  end
+
+  def self.all(offset=0, limit=nil)
+    result = collection.find().skip(offset)
+    result = result.limit(limit) if !limit.nil?
+
+    result.map { |doc| Place.new(doc) }
+  end
+
+  def destroy
+    self.class.collection.find(:_id => BSON::ObjectId.from_string(self.id)).delete_one
+  end
 end
