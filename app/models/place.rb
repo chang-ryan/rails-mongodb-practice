@@ -56,9 +56,16 @@ class Place
     self.class.collection.find(:_id => BSON::ObjectId.from_string(self.id)).delete_one
   end
 
-  def self.get_address_components(sort={:_id => 1}, offset=0, limit=nil)
-    result = collection.find.aggregate([{:$project => {:_id=>1, :address_components=>1, :formatted_address=>1, "geometry.location"=>1}}])
+  def self.get_address_components(sort={:_id => 1}, offset=0, limit=9999)
+    result = collection.find().aggregate([{:$project => {:_id=>1, :address_components=>1, :formatted_address=>1, "geometry.geolocation"=>1}}, {:$unwind => '$address_components'},  {:$sort => sort}, {:$skip => offset}, {:$limit => limit}])
+  end
 
-    result
+  def self.get_country_names
+    result = collection.aggregate([
+      {:$unwind  => "$address_components"},
+      {:$project => {:_id => 0, :address_components=> {:long_name => 1, :types => 1}}},
+      {:$match   => {"address_components.types" => "country"}},
+      {:$group   => {:_id => "$address_components.long_name"}}
+    ]).to_a.map { |h| h[:_id]}
   end
 end
