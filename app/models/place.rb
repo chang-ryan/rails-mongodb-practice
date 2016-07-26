@@ -55,4 +55,10 @@ class Place
   def destroy
     self.class.collection.find(:_id => BSON::ObjectId.from_string(self.id)).delete_one
   end
+
+  def self.get_address_components(sort={:_id => 1}, offset=0, limit=nil)
+    result = collection.find.aggregate([{:$project => {:_id=>1, :address_components=>1, :formatted_address=>1, "geometry.location"=>1}}])
+
+    result
+  end
 end
