@@ -15,5 +15,7 @@
 /log/*
 !/log/.keep
 /tmp
-/.DS_STORE
-.DS_STORE
+
+# Ignore .DS_Store
+/.DS_Store
+.DS_Store
