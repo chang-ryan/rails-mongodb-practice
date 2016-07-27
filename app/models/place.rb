@@ -1,5 +1,4 @@
 class Place
-  include Mongoid::Document
   attr_accessor :id, :formatted_address, :location, :address_components
 
   def self.mongo_client
@@ -74,5 +73,16 @@ class Place
       {:$match => {"address_components.short_name" => s}},
       {:$project => {:_id => 1}}
     ]).to_a.map { |h| h[:_id].to_s }
+  end
+
+  def self.create_indexes
+    collection.indexes.create_one({"geometry.geolocation" => Mongo::Index::GEO2DSPHERE})
+  end
+
+  def self.remove_indexes
+    collection.indexes.drop_all()
+  end
+
+  def self.near(point, max_distance)
   end
 end

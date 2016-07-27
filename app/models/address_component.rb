@@ -1,5 +1,4 @@
 class AddressComponent
-  include Mongoid::Document
   attr_reader :long_name, :short_name, :types
 
   def initialize(params={})

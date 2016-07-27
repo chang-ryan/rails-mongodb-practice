@@ -1,5 +1,4 @@
 class Point
-  include Mongoid::Document
   attr_accessor :longitude, :latitude
 
   def initialize(params={})
