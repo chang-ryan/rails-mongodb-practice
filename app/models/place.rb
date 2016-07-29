@@ -83,6 +83,15 @@ class Place
     collection.indexes.drop_all()
   end
 
-  def self.near(point, max_distance)
+  def self.near(point, max_distance=nil)
+    point = point.to_hash
+    collection.find(
+      "geometry.geolocation" => {
+        :$near => {
+          :$geometry    => point,
+          :$maxDistance => max_distance
+        }
+      }
+    )
   end
 end

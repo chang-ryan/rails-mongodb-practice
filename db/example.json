@@ -1,0 +1,34 @@
+{"_id"=>BSON::ObjectId('5796d1519ee4f40fcc000027'),
+ "address_components"=>
+  [{"long_name"=>"77713-77735",
+    "short_name"=>"77713-77735",
+    "types"=>["street_number"]},
+   {"long_name"=>"Dillon Road", "short_name"=>"Dillon Rd", "types"=>["route"]},
+   {"long_name"=>"Desert Hot Springs",
+    "short_name"=>"Desert Hot Springs",
+    "types"=>["locality", "political"]},
+   {"long_name"=>"Riverside County",
+    "short_name"=>"Riverside County",
+    "types"=>["administrative_area_level_2", "political"]},
+   {"long_name"=>"California",
+    "short_name"=>"CA",
+    "types"=>["administrative_area_level_1", "political"]},
+   {"long_name"=>"United States",
+    "short_name"=>"US",
+    "types"=>["country", "political"]},
+   {"long_name"=>"92241", "short_name"=>"92241", "types"=>["postal_code"]}],
+ "formatted_address"=>
+  "77713-77735 Dillon Rd, Desert Hot Springs, CA 92241, USA",
+ "geometry"=>
+  {"bounds"=>
+    {"northeast"=>{"lat"=>33.8755568, "lng"=>-116.3013125},
+     "southwest"=>{"lat"=>33.8753572, "lng"=>-116.3017883}},
+   "location"=>{"lat"=>33.875467, "lng"=>-116.3016158},
+   "location_type"=>"RANGE_INTERPOLATED",
+   "viewport"=>
+    {"northeast"=>{"lat"=>33.87680598029151, "lng"=>-116.3002014197085},
+     "southwest"=>{"lat"=>33.87410801970851, "lng"=>-116.3028993802915}},
+   "geolocation"=>{"type"=>"Point", "coordinates"=>[-116.3016158, 33.875467]}},
+ "place_id"=>
+  "Ejg3NzcxMy03NzczNSBEaWxsb24gUmQsIERlc2VydCBIb3QgU3ByaW5ncywgQ0EgOTIyNDEsIFVTQQ",
+ "types"=>["street_address"]}
