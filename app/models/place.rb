@@ -94,4 +94,16 @@ class Place
       }
     )
   end
+
+  def near(max_distance=nil)
+    point = self.location.to_hash
+    result = self.class.collection.find(
+      "geometry.geolocation" => {
+        :$near => {
+          :$geometry =>    point,
+          :$maxDistance => max_distance
+        }
+      }
+    ).map { |doc| Place.new(doc) }
+  end
 end
